@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MaxOverPartition.Model;
 
 namespace MaxOverPartition.Dataset
 {
-    internal class Generator
+    public class Generator
     {
         public static ICollection<Contract> GetContracts(int referenceCount)
         {

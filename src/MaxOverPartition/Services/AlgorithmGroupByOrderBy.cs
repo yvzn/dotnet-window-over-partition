@@ -5,7 +5,7 @@ using MaxOverPartition.Model;
 
 namespace MaxOverPartition.Services
 {
-    class AlgorithmGroupByOrderBy : ContractSortingAlgorithm
+    public class AlgorithmGroupByOrderBy : ContractSortingAlgorithm
     {
         public override IEnumerable<Contract?> Run<TPartitionKey, TOrderByKey>(
             IEnumerable<Contract> items,
