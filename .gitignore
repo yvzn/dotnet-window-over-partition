@@ -1,0 +1,8 @@
+# .NET Core build folders
+bin/
+obj/
+
+# Solution files
+.suo
+.dtbcache.v2
+TestStore/
