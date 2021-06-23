@@ -13,6 +13,7 @@ namespace MaxOverPartition.Tests.Services
         public TestedAlgorithms()
         {
             Add(new AlgorithmGroupByOrderBy());
+            Add(new AlgorithmSortFirstThenGroupBy());
             Add(new AlgorithmForEach());
         }
     }

@@ -24,9 +24,12 @@ namespace MaxOverPartitionBenchmarks
         }
 
         [Benchmark(Baseline = true)]
-        public void AlgorithmGroupByOrderBy() => new AlgorithmGroupByOrderBy().Run(dataset!).ToList();
+        public IList<Contract?> AlgorithmGroupByOrderBy() => new AlgorithmGroupByOrderBy().Run(dataset!).ToList();
 
         [Benchmark]
-        public void AlgorithmForEach() => new AlgorithmForEach().Run(dataset!).ToList();
+        public IList<Contract?> AlgorithmSortFirstThenGroupBy() => new AlgorithmSortFirstThenGroupBy().Run(dataset!).ToList();
+
+        [Benchmark]
+        public IList<Contract?> AlgorithmForEach() => new AlgorithmForEach().Run(dataset!).ToList();
     }
 }
