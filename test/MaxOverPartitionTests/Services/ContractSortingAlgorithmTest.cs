@@ -13,6 +13,7 @@ namespace MaxOverPartition.Tests.Services
         public TestedAlgorithms()
         {
             Add(new AlgorithmGroupByOrderBy());
+            Add(new AlgorithmForEach());
         }
     }
 
@@ -46,7 +47,7 @@ namespace MaxOverPartition.Tests.Services
 
                 // Then
                 actual
-                    .GroupBy(contract => contract.Reference)
+                    .GroupBy(contract => contract?.Reference)
                     .Select(group => new { group.Key, Count = group.Count() })
                     .Should()
                     .OnlyContain(reference => reference.Count == 1);
@@ -58,14 +59,14 @@ namespace MaxOverPartition.Tests.Services
             public void Should_keep_the_max_version_when_multiple_versions(ContractSortingAlgorithm algorithm)
             {
                 // Given
-                var items = Generator.GetVersionsOfContract(3);
+                var items = Generator.GetVersionsOfContract(3).ToList();
 
                 // When
                 var actual = algorithm.Run(items);
 
                 // Then
                 actual.Should().HaveCount(1);
-                actual.First().Version.Should().Be(3);
+                actual.First()?.Version.Should().Be(3);
             }
         }
     }

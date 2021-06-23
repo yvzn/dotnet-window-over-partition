@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using MaxOverPartition.Dataset;
@@ -13,7 +14,7 @@ namespace MaxOverPartitionBenchmarks
     {
         private ICollection<Contract>? dataset;
 
-        [Params(10)]
+        [Params(100, 1000, 10000)]
         public int N;
 
         [GlobalSetup]
@@ -23,6 +24,9 @@ namespace MaxOverPartitionBenchmarks
         }
 
         [Benchmark(Baseline = true)]
-        public void AlgorithmGroupByOrderBy() => new AlgorithmGroupByOrderBy().Run(dataset!);
+        public void AlgorithmGroupByOrderBy() => new AlgorithmGroupByOrderBy().Run(dataset!).ToList();
+
+        [Benchmark]
+        public void AlgorithmForEach() => new AlgorithmForEach().Run(dataset!).ToList();
     }
 }

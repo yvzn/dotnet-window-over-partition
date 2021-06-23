@@ -6,9 +6,11 @@ namespace MaxOverPartition.Services
     internal interface IWindowFunctionOverPartition<TItem, TResult>
     {
         IEnumerable<TResult> Run<TPartitionKey, TOrderByKey>(
-            IEnumerable<TItem> items,
+            ICollection<TItem> items,
             Func<IEnumerable<TItem>, TResult> windowFunction,
             Func<TItem, TPartitionKey> partitionKeySelector,
-            Func<TItem, TOrderByKey> sortingKeySelector);
+            Func<TItem, TOrderByKey> orderingKeySelector)
+            where TPartitionKey : notnull
+            where TOrderByKey : IComparable<TOrderByKey>;
     }
 }
