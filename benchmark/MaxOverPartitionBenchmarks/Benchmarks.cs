@@ -31,5 +31,8 @@ namespace MaxOverPartitionBenchmarks
 
         [Benchmark]
         public IList<Contract?> AlgorithmForEach() => new AlgorithmForEach().Run(dataset!).ToList();
+
+        [Benchmark]
+        public IList<Contract?> AlgorithmSortFirstThenForEach() => new AlgorithmSortFirstThenForEach().Run(dataset!).ToList();
     }
 }

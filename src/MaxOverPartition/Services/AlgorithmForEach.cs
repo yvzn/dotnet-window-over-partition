@@ -39,7 +39,7 @@ namespace MaxOverPartition.Services
                         windowFuctionBuffer[1] = previousItem;
                     }
 
-                    result[partitionKey] = windowFunction.Invoke(windowFuctionBuffer);
+                    result[partitionKey] = windowFunction(windowFuctionBuffer);
                 }
                 else
                 {

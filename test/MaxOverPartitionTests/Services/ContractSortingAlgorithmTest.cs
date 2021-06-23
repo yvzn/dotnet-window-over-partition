@@ -15,6 +15,7 @@ namespace MaxOverPartition.Tests.Services
             Add(new AlgorithmGroupByOrderBy());
             Add(new AlgorithmSortFirstThenGroupBy());
             Add(new AlgorithmForEach());
+            Add(new AlgorithmSortFirstThenForEach());
         }
     }
 
@@ -38,7 +39,23 @@ namespace MaxOverPartition.Tests.Services
 
             [Theory]
             [ClassData(typeof(TestedAlgorithms))]
-            public void Should_return_a_single_value_for_every_reference(ContractSortingAlgorithm algorithm)
+            public void Should_return_a_value_for_every_reference(ContractSortingAlgorithm algorithm)
+            {
+                // Given
+                var items = Generator.GetContracts(10);
+
+                // When
+                var actual = algorithm.Run(items);
+
+                // Then
+                actual
+                    .Should()
+                    .HaveCount(10);
+            }
+
+            [Theory]
+            [ClassData(typeof(TestedAlgorithms))]
+            public void Should_return_a_unique_value_for_each_reference(ContractSortingAlgorithm algorithm)
             {
                 // Given
                 var items = Generator.GetContracts(10);
@@ -53,7 +70,6 @@ namespace MaxOverPartition.Tests.Services
                     .Should()
                     .OnlyContain(reference => reference.Count == 1);
             }
-
 
             [Theory]
             [ClassData(typeof(TestedAlgorithms))]
